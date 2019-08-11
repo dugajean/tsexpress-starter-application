@@ -1,7 +1,8 @@
+import './verbs';
 import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
-import * as http from './verbs';
+import { Route } from './verbs';
 import BodyParser from 'body-parser';
 import { stripSlashes, log } from './helpers';
 
@@ -98,7 +99,7 @@ export default class Application {
   private registerRoutes(routes: any[], baseRoute: string): void {
     for (const verb in routes) {
       if (routes.hasOwnProperty(verb)) {
-        routes[verb].forEach((route: http.Route) => {
+        routes[verb].forEach((route: Route) => {
           const routePart: string = stripSlashes(route.path);
           const fullRoute: string = `/${baseRoute}${routePart ? '/' : ''}${routePart}`;
 

@@ -1,4 +1,5 @@
 export default class Application {
+    private appDir;
     private express;
     /**
      * Logic to execute before routes are registered.
@@ -17,7 +18,7 @@ export default class Application {
      *
      * @param {any} express An Express app instance.
      */
-    constructor(express: any);
+    constructor(appDir: string, express: any);
     /**
      * Start the application and listen to a port.
      *
