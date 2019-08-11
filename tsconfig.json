@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": true,
+    "inlineSourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

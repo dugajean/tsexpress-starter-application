@@ -1,0 +1,54 @@
+{
+  "name": "tsexpress-starter-core",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/application.js",
+  "types": "application.d.ts",
+  "scripts": {
+    "prepublish": "yarn build && yarn defs",
+    "defs": "tsc --declaration --outDir . --emitDeclarationOnly",
+    "build": "rimraf dist && yarn lint && tsc",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "cross-env NODE_ENV=test tsc && ava"
+  },
+  "keywords": [],
+  "author": "Dukagjin Surdulli <me@dukagj.in> (https://dukagj.in/)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "glob": "^7.1.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.0",
+    "@types/glob": "^7.1.1",
+    "@types/node": "^12.7.1",
+    "ava": "^2.2.0",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  },
+  "peerDependencies": {
+    "express": "*"
+  },
+  "ava": {
+    "failFast": true,
+    "verbose": true,
+    "helpers": [
+      "test/helpers/**/*"
+    ],
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "engines": {
+    "node": ">=8.3"
+  }
+}
