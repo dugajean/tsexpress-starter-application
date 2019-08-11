@@ -1,10 +1,9 @@
-import './verbs';
 import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
-import { Route } from './verbs';
 import BodyParser from 'body-parser';
-import { stripSlashes, log } from './helpers';
+import { Route } from '@tsexpress-starter/routes';
+import { stripSlashes, log } from '@tsexpress-starter/utils';
 
 export default class Application {
   /**

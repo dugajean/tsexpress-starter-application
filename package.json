@@ -1,5 +1,5 @@
 {
-  "name": "tsexpress-starter-core",
+  "name": "@tsexpress-starter/application",
   "version": "0.1.4",
   "description": "The TSExpress Starter core functionality.",
   "keywords": [
@@ -17,15 +17,16 @@
     "Dukagjin Surdulli <me@dukagj.in> (https://dukagj.in/)"
   ],
   "main": "dist/application.js",
-  "types": "application.d.ts",
+  "types": "dist/application.d.ts",
   "scripts": {
-    "prepublish": "yarn build && yarn defs",
-    "defs": "tsc --declaration --outDir . --emitDeclarationOnly",
+    "prepublish": "yarn build",
     "build": "rimraf dist && yarn lint && tsc",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "cross-env NODE_ENV=test tsc && ava"
   },
   "dependencies": {
+    "@tsexpress-starter/routes": "^0.1.4",
+    "@tsexpress-starter/utils": "^0.1.5",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "glob": "^7.1.4"
@@ -61,5 +62,9 @@
   },
   "engines": {
     "node": ">=8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dugajean/tsexpress-starter-core.git"
   }
 }

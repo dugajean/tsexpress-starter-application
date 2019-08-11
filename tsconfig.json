@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "module": "commonjs",
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": true,
     "inlineSourceMap": true,
     "esModuleInterop": true,
