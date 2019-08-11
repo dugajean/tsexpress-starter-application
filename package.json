@@ -1,17 +1,21 @@
 {
   "name": "@tsexpress-starter/application",
   "version": "0.1.5",
-  "description": "The TSExpress Starter core functionality.",
+  "description": "Application layer and initializer.",
   "keywords": [
     "typescript",
     "express"
   ],
   "author": "Dukagjin Surdulli <me@dukagj.in> (https://dukagj.in/)",
-  "homepage": "https://github.com/dugajean/tsexpress-starter-core",
+  "homepage": "https://github.com/dugajean/tsexpress-starter-application",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dugajean/tsexpress-starter-core/issues",
+    "url": "https://github.com/dugajean/tsexpress-starter-application/issues",
     "email": "me@dukagj.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dugajean/tsexpress-starter-application.git"
   },
   "contributors": [
     "Dukagjin Surdulli <me@dukagj.in> (https://dukagj.in/)"
@@ -62,9 +66,5 @@
   },
   "engines": {
     "node": ">=8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dugajean/tsexpress-starter-core.git"
   }
 }
