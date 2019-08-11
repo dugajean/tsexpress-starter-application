@@ -1,9 +1,9 @@
 import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
+import * as http from './verbs';
 import BodyParser from 'body-parser';
 import { stripSlashes, log } from './helpers';
-import { Route } from './verbs';
 
 export default class Application {
   /**
@@ -25,7 +25,7 @@ export default class Application {
    *
    * @param {any} express An Express app instance.
    */
-  constructor(private express: any) {}
+  constructor(private appDir: string, private express: any) {}
 
   /**
    * Start the application and listen to a port.
@@ -70,7 +70,7 @@ export default class Application {
    * @return {void}
    */
   private async locateControllers(): Promise<void> {
-    const controllerPaths = glob.sync(path.join(__dirname, '../app/**/controller.{ts,js}'));
+    const controllerPaths = glob.sync(path.join(this.appDir, '/app/**/controller.{ts,js}'));
 
     let baseRoute;
     let controller;
@@ -98,7 +98,7 @@ export default class Application {
   private registerRoutes(routes: any[], baseRoute: string): void {
     for (const verb in routes) {
       if (routes.hasOwnProperty(verb)) {
-        routes[verb].forEach((route: Route) => {
+        routes[verb].forEach((route: http.Route) => {
           const routePart: string = stripSlashes(route.path);
           const fullRoute: string = `/${baseRoute}${routePart ? '/' : ''}${routePart}`;
 
