@@ -6,7 +6,7 @@ export default class Application {
      *
      * @return  {Function|null}
      */
-    beforeRoutes?: Function;
+    beforeRoutes: Function;
     /**
      * Logic to execute after routes are registered.
      *
@@ -21,10 +21,8 @@ export default class Application {
     constructor(appDir: string, express: any);
     /**
      * Start the application and listen to a port.
-     *
-     * @return {void}
      */
-    start(): void;
+    start(): Promise<void>;
     /**
      * Returns the current express instance.
      *

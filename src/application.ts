@@ -1,7 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
-import BodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 import { Route } from '@tsexpress-starter/routes';
 import { stripSlashes, log } from '@tsexpress-starter/utils';
 
@@ -11,14 +11,14 @@ export default class Application {
    *
    * @return  {Function|null}
    */
-  beforeRoutes?: Function;
+  beforeRoutes: Function = (): any => null;
 
   /**
    * Logic to execute after routes are registered.
    *
    * @return  {Function|null}
    */
-  afterRoutes?: Function;
+  afterRoutes?: Function = (): any => null;
 
   /**
    * Application constructor.
@@ -29,26 +29,16 @@ export default class Application {
 
   /**
    * Start the application and listen to a port.
-   *
-   * @return {void}
    */
-  start(): void {
+  async start() {
     dotenv.config();
 
-    this.express.use(BodyParser.urlencoded({ extended: true }));
-    this.express.use(BodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(bodyParser.json());
 
-    // Run before routes hooks
-    if (this.beforeRoutes) {
-      this.beforeRoutes.call(this, this.express);
-    }
-
-    this.locateControllers();
-
-    // Run after routes hooks
-    if (this.beforeRoutes) {
-      this.beforeRoutes.call(this, this.express);
-    }
+    await this.beforeRoutes(this.express);
+    await this.locateControllers();
+    await this.afterRoutes(this.express);
 
     this.express.listen(process.env.APP_PORT, () => {
       log(`Server listening on port: ${process.env.APP_PORT}`);
