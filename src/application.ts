@@ -90,8 +90,6 @@ export default class Application {
    *
    * @param {any}    routes     The list of routes to register
    * @param {string} baseRoute  The base of the domain, ie. "tasks"
-   * @param {any}    req        Express's request object
-   * @param {any}    res        Express's response handler
    *
    * @return {void}
    */

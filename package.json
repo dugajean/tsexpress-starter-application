@@ -24,6 +24,7 @@
   "types": "dist/application.d.ts",
   "scripts": {
     "prepublish": "yarn build",
+    "dev": "tsc -w",
     "build": "rimraf dist && yarn lint && tsc",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "cross-env NODE_ENV=test tsc && ava"
