@@ -5,7 +5,7 @@
     "outDir": "./dist",
     "module": "commonjs",
     "declaration": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "inlineSourceMap": true,
     "esModuleInterop": true,
     "moduleResolution": "node",

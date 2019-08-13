@@ -1,6 +1,6 @@
-export default class Application {
+export declare class Application {
     private appDir;
-    private express;
+    private readonly express;
     /**
      * Logic to execute before routes are registered.
      *
@@ -24,24 +24,9 @@ export default class Application {
      */
     start(): Promise<void>;
     /**
-     * Returns the current express instance.
-     *
-     * @return  {any}
-     */
-    readonly expressInstance: any;
-    /**
      * Locates all the controller's within the app
      *
      * @return {void}
      */
     private locateControllers;
-    /**
-     * Registers all routes with the express app.
-     *
-     * @param {any}    routes     The list of routes to register
-     * @param {string} baseRoute  The base of the domain, ie. "tasks"
-     *
-     * @return {void}
-     */
-    private registerRoutes;
 }

@@ -2,10 +2,9 @@ import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import { Route } from '@tsexpress-starter/routes';
-import { stripSlashes, log } from '@tsexpress-starter/utils';
+import { log } from '@tsexpress-starter/utils';
 
-export default class Application {
+export class Application {
   /**
    * Logic to execute before routes are registered.
    *
@@ -25,7 +24,7 @@ export default class Application {
    *
    * @param {any} express An Express app instance.
    */
-  constructor(private appDir: string, private express: any) {}
+  constructor(private appDir: string, private readonly express: any) {}
 
   /**
    * Start the application and listen to a port.
@@ -46,54 +45,12 @@ export default class Application {
   }
 
   /**
-   * Returns the current express instance.
-   *
-   * @return  {any}
-   */
-  get expressInstance(): any {
-    return this.express;
-  }
-
-  /**
    * Locates all the controller's within the app
    *
    * @return {void}
    */
   private async locateControllers(): Promise<void> {
-    const controllerPaths = glob.sync(path.join(this.appDir, '/app/**/controller.{ts,js}'));
-
-    let baseRoute;
-    let controller;
-
-    for (const controllerPath of controllerPaths) {
-      baseRoute = path.basename(path.dirname(controllerPath));
-      controller = await import(controllerPath);
-      controller = new controller.default();
-
-      log(`Registering routes for ${baseRoute} controller:`);
-      this.registerRoutes(controller._routes, baseRoute);
-    }
-  }
-
-  /**
-   * Registers all routes with the express app.
-   *
-   * @param {any}    routes     The list of routes to register
-   * @param {string} baseRoute  The base of the domain, ie. "tasks"
-   *
-   * @return {void}
-   */
-  private registerRoutes(routes: any[], baseRoute: string): void {
-    for (const verb in routes) {
-      if (routes.hasOwnProperty(verb)) {
-        routes[verb].forEach((route: Route) => {
-          const routePart: string = stripSlashes(route.path);
-          const fullRoute: string = `/${baseRoute}${routePart ? '/' : ''}${routePart}`;
-
-          log(`Route: [${verb.toUpperCase()}] ${fullRoute}`);
-          this.express[verb](fullRoute, ...[...(route.middlewares ? route.middlewares : []), route.handler]);
-        });
-      }
-    }
+    globalThis.expressApp = this.express;
+    glob.sync(path.join(this.appDir, '/app/**/controller.{ts,js}')).forEach(async c => await import(c));
   }
 }
