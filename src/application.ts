@@ -2,6 +2,7 @@ import glob from 'glob';
 import path from 'path';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import { Request, Response } from 'express';
 import { log } from '@tsexpress-starter/utils';
 
 export class Application {
@@ -38,6 +39,8 @@ export class Application {
     await this.beforeRoutes(this.express);
     await this.locateControllers();
     await this.afterRoutes(this.express);
+
+    this.express.all('*', (req: Request, res: Response) => res.sendStatus(404));
 
     this.express.listen(process.env.APP_PORT, () => {
       log(`Server listening on port: ${process.env.APP_PORT}`);
