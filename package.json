@@ -1,6 +1,6 @@
 {
   "name": "@tsexpress-starter/application",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Application layer and initializer.",
   "keywords": [
     "typescript",
@@ -30,8 +30,8 @@
     "test": "cross-env NODE_ENV=test tsc && ava"
   },
   "dependencies": {
-    "@tsexpress-starter/routes": "^0.1.4",
-    "@tsexpress-starter/utils": "^0.1.5",
+    "@tsexpress-starter/routes": "^0.2",
+    "@tsexpress-starter/utils": "^0.1",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "glob": "^7.1.4"
