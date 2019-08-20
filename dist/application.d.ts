@@ -1,5 +1,5 @@
 export declare class Application {
-    private appDir;
+    readonly appDir: string;
     private readonly express;
     /**
      * Logic to execute before routes are registered.

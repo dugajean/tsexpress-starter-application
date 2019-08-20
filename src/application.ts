@@ -25,7 +25,7 @@ export class Application {
    *
    * @param {any} express An Express app instance.
    */
-  constructor(private appDir: string, private readonly express: any) {}
+  constructor(public readonly appDir: string, private readonly express: any) {}
 
   /**
    * Start the application and listen to a port.
